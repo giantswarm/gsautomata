@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gsautomata
+  namespace: giantswarm
+  labels:
+    app: gsautomata
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gsautomata
+  template:
+    metadata:
+      labels:
+        app: gsautomata
+    spec:
+      serviceAccountName: gsautomata
+      containers:
+      - name: gsautomata
+        image: paurosello/gsautomata-alertbridge:0.0.26
+        ports:
+        - containerPort: 5000

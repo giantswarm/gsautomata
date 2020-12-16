@@ -1,0 +1,4 @@
+Flask==1.1.2
+requests==2.25.0
+APScheduler==3.6.3
+pykube-ng==20.10.0

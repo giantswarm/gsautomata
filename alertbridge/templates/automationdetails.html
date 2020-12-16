@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="column is-10 is-offset-1">
+    <div class="card">
+        <div class="card-content">
+            <div class="media">
+                <div class="has-text-centered">
+                    <p class="title is-4"> {{ automation["labels"]["alertname"] }} </p>
+                </div>
+            </div>
+            <div class="column">
+                <div class="field is-grouped is-grouped-multiline">
+                    {% for key in automation["labels"] %}
+                    <div class="control">
+                        <div class="tags has-addons">
+                            <span class="tag is-rounded is-link">{{ key }}</span>
+                            <span class="tag is-rounded">{{ automation["labels"][key] }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    {% for log in logs %}
+
+        <div class="card">
+            <div class="card-content">
+                <div class="media">
+                    <div class="has-text-centered">
+                    </div>
+                </div>
+                <div class="column">
+                        <pre>
+                            {{ logs[0]|safe }}
+                        </pre>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}

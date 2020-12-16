@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: gsautomata
+  namespace: giantswarm
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: gsautomata
+  namespace: giantswarm
+rules:
+- apiGroups: [""]
+  resources: ["pods", "pods/log"]
+  verbs: ["get", "watch", "list"]
+- apiGroups: ["batch"]
+  resources: ["jobs", "jobs/log"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: gsautomata
+  namespace: giantswarm
+subjects:
+- kind: ServiceAccount
+  name: gsautomata
+  namespace: giantswarm
+roleRef:
+  kind: Role
+  name: gsautomata
+  apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,23 @@
+name: gsautomata
+labels:
+  app: gsautomata
+image: okteto/python:3
+command: bash
+volumes:
+  - /root/.cache/pip
+workdir: /usr/src/app
+sync:
+  - ./alertbridge:/usr/src/app
+forward:
+- 5000:5000
+persistentVolume:
+  enabled: true
+  storageClass: gp2
+resources:
+  limits:
+    cpu: "1"
+    memory: 1Gi
+securityContext:
+  runAsUser: 0
+  runAsGroup: 1000
+  fsGroup: 1000
