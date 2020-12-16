@@ -7,7 +7,7 @@ volumes:
   - /root/.cache/pip
 workdir: /usr/src/app
 sync:
-  - ./alertbridge:/usr/src/app
+  - .:/usr/src/app
 forward:
 - 5000:5000
 persistentVolume:
